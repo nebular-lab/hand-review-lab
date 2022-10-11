@@ -1,0 +1,15 @@
+import React from 'react'
+
+const TableHeader = () => {
+  return (
+    <Thead>
+      <Tr>
+        <Th>To convert</Th>
+        <Th>into</Th>
+        <Th isNumeric>multiply by</Th>
+      </Tr>
+    </Thead>
+  )
+}
+
+export default TableHeader
