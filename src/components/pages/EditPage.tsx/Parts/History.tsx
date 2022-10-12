@@ -1,18 +1,18 @@
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
 import StreetAction from './StreetAction'
 
 const History = () => {
+  const indexes = [0, 1, 2, 3]
   return (
-    <Flex direction="column">
+    <Flex direction="column" bg="white" gap={2} w="full">
       {/* preflop ~ river */}
-      <StreetAction streetIndex={0} />
+      {indexes.map((index) => (
+        <Flex key={index}>
+          <StreetAction streetIndex={index} />
+        </Flex>
+      ))}
 
-      <StreetAction streetIndex={1} />
-
-      <StreetAction streetIndex={2} />
-
-      <StreetAction streetIndex={3} />
       {/* {canEdit && (
         <>
           <Modal

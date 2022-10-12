@@ -1,7 +1,8 @@
-import { FC } from "react"
-import { useRecoilState } from "recoil"
-import { editingCardsState } from "../../../../store/store"
-import Card from "../../../Atoms/Card"
+import { Flex } from '@chakra-ui/react'
+import { FC } from 'react'
+import { useRecoilState } from 'recoil'
+import { editingCardsState } from '../../../../store/store'
+import Card from '../../../Atoms/Card'
 
 interface CardProps {
   street: number
@@ -27,17 +28,18 @@ const Cards: FC<CardProps> = (props) => {
       break
   }
   return (
-    <>
+    <Flex gap={1}>
       {cardIndexes.map((cardIndex, index) => {
         return (
           <Card
             key={index}
             num={editingCards[cardIndex].num}
             mark={editingCards[cardIndex].mark}
+            size="md"
           />
         )
       })}
-    </>
+    </Flex>
   )
 }
 

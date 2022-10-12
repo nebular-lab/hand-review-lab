@@ -98,15 +98,16 @@ Seat 6: ffwq1 folded before Flop (didn't bet)
 
 export const editHistory = (history: string) => {
   let splitedhistory = history.split('\n')
+  let streetPot = [0, 0, 0, 0]
 
   let playerCount = 0
-  let sb
-  let bb
+  let sb: number = 0
+  let bb: number = 0
   const cards: CardInterface[] = []
   const actions: ActionInterface[][] = [[], [], [], []]
   let nowStreet = -1
-  const players: { pos: string; name: string }[] = []
-  const posList = ["BTN", "SB", "BB", "UTG", "HJ", "CO"]
+  const players: { pos: string; name: string; pot: number[] }[] = []
+  const posList = ['BTN', 'SB', 'BB', 'UTG', 'HJ', 'CO']
   let posPushIndex = 0
   splitedhistory.forEach((line) => {
     if (line.includes('in chips)')) {
@@ -115,6 +116,7 @@ export const editHistory = (history: string) => {
       players.push({
         pos: posList[posPushIndex],
         name: line.split(' ').slice(2, -3)[0],
+        pot: [0, 0, 0, 0],
       })
       posPushIndex++
     }
@@ -123,9 +125,21 @@ export const editHistory = (history: string) => {
   splitedhistory.forEach((line) => {
     if (line.includes('posts small blind')) {
       sb = Number(line.split(' ').slice(-1)[0].replace('$', ''))
+      const name = line.split(' ')[0].slice(0, -1)
+      players.forEach((player) => {
+        if (player.name == name) {
+          player.pot[0] = sb
+        }
+      })
     }
     if (line.includes('posts big blind')) {
       bb = Number(line.split(' ').slice(-1)[0].replace('$', ''))
+      const name = line.split(' ')[0].slice(0, -1)
+      players.forEach((player) => {
+        if (player.name == name) {
+          player.pot[0] = bb
+        }
+      })
     }
 
     if (line.includes('Board [')) {
@@ -137,15 +151,27 @@ export const editHistory = (history: string) => {
 
     if (line.includes('*** HOLE CARDS ***')) {
       nowStreet = 0
+      streetPot[0] = sb + bb
     }
     if (line.includes('*** FLOP ***')) {
       nowStreet = 1
+      players.forEach((player) => {
+        streetPot[1] += player.pot[0]
+      })
     }
     if (line.includes('*** TURN ***')) {
       nowStreet = 2
+      streetPot[2] += streetPot[1]
+      players.forEach((player) => {
+        streetPot[2] += player.pot[1]
+      })
     }
     if (line.includes('*** RIVER ***')) {
       nowStreet = 3
+      streetPot[3] += streetPot[2]
+      players.forEach((player) => {
+        streetPot[3] += player.pot[2]
+      })
     }
     if (line.includes(': folds')) {
       const name = line.split(' ')[0].slice(0, -1)
@@ -175,6 +201,7 @@ export const editHistory = (history: string) => {
         }
       })
     }
+
     if (line.includes(': calls')) {
       const size = Number(line.split(' ').slice(-1)[0].replace('$', ''))
       const name = line.split(' ')[0].slice(0, -1)
@@ -187,6 +214,7 @@ export const editHistory = (history: string) => {
             street: nowStreet,
             order: actions[nowStreet].length,
           })
+          player.pot[nowStreet] += size
         }
       })
     }
@@ -202,6 +230,7 @@ export const editHistory = (history: string) => {
             street: nowStreet,
             order: actions[nowStreet].length,
           })
+          player.pot[nowStreet] += size
         }
       })
     }
@@ -217,6 +246,7 @@ export const editHistory = (history: string) => {
             street: nowStreet,
             order: actions[nowStreet].length,
           })
+          player.pot[nowStreet] = size
         }
       })
     }
@@ -238,6 +268,7 @@ export const editHistory = (history: string) => {
             street: nowStreet,
             order: actions[nowStreet].length,
           })
+          player.pot[nowStreet] = size
         }
       })
     }
@@ -251,5 +282,13 @@ export const editHistory = (history: string) => {
       xPot++
     }
   })
-  return { action: actions, cards: cards }
+  console.log(players)
+  return {
+    action: actions,
+    cards: cards,
+    sb: sb,
+    bb: bb,
+    xPot: xPot,
+    streetPot: streetPot,
+  }
 }

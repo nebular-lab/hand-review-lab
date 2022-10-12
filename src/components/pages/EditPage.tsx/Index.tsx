@@ -1,5 +1,13 @@
 import { useMutation } from '@apollo/client'
-import { Flex, Textarea } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  HStack,
+  Textarea,
+  VStack,
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
@@ -21,7 +29,7 @@ import {
   editingCardsState,
   editingContentState,
   editingESState,
-  editingPotState,
+  editingStreetPotState,
   editingTitleState,
   isDataState,
 } from '../../../store/store'
@@ -34,7 +42,7 @@ const EditPage = () => {
     useRecoilState(editingActionsState)
   const [editingCards, setEditingCards] = useRecoilState(editingCardsState)
   const [editingES, setEditingES] = useRecoilState(editingESState)
-  const [editingPot, setEditingPot] = useRecoilState(editingPotState)
+  const [editingPot, setEditingPot] = useRecoilState(editingStreetPotState)
   const [editingTitle, setEditingTitle] = useRecoilState(editingTitleState)
   const [editingContent, setEditingContent] =
     useRecoilState(editingContentState)
@@ -50,7 +58,7 @@ const EditPage = () => {
       { num: 'w', mark: 'w' },
     ])
     setEditingES(100)
-    setEditingPot([0, 0, 0])
+    setEditingPot([0, 0, 0, 0])
     setEditingTitle('')
     setEditingContent('')
     setIsData(true)
@@ -99,6 +107,7 @@ const EditPage = () => {
               { size: editingPot[0], street: 0 },
               { size: editingPot[1], street: 1 },
               { size: editingPot[2], street: 2 },
+              { size: editingPot[3], street: 3 },
             ],
             on_conflict: {
               constraint: Pots_Constraint.PotsHandIdStreetKey,
@@ -136,13 +145,15 @@ const EditPage = () => {
   }
   return (
     <Layout>
-      <Flex>
-        <Flex>
+      <HStack mx="20" mt="20">
+        <VStack w="full">
           <History />
           <Textarea />
-        </Flex>
-        <HistoryForm />
-      </Flex>
+        </VStack>
+        <Box w="80" bg="white">
+          <HistoryForm />
+        </Box>
+      </HStack>
     </Layout>
   )
 }

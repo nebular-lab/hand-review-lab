@@ -1,23 +1,11 @@
-import { Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Stack, Text } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilState } from 'recoil'
-import {
-  ActionInterface,
-  CardInterface,
-  editingActionsState,
-  editingCardsState,
-  editingContentState,
-  editingESState,
-  editingPotState,
-  editingTitleState,
-  isDataState,
-  isOpenCardSetterState,
-  isOpenNumSetterState,
-  selectedActionState,
-} from '../../../../store/store'
+
 import Card from '../../../Atoms/Card'
 import EditingActions from './EditingActions'
 import Cards from './EditingCards'
+import EditingPot from './EditingPot'
 
 interface StreetActionProps {
   streetIndex: number
@@ -25,14 +13,38 @@ interface StreetActionProps {
 
 const StreetAction: FC<StreetActionProps> = (props) => {
   const { streetIndex } = props
+  let streetName = ''
+  switch (streetIndex) {
+    case 0:
+      streetName = 'preflop'
+      break
+    case 1:
+      streetName = 'flop'
+      break
+    case 2:
+      streetName = 'turn'
+      break
+    case 3:
+      streetName = 'river'
+  }
   return (
-    <Flex>
-      <Cards street={streetIndex} />
-      <EditingActions street={streetIndex}/>
+    <Flex px="3" py="3">
+      <Flex w="70px">
+        <Text textTransform="uppercase" fontSize="sm">
+          {streetName}
+        </Text>
+      </Flex>
+      <Flex w="40px">
+        <EditingPot street={streetIndex} />
+      </Flex>
+      <Flex w="100px">
+        <Cards street={streetIndex} />
+      </Flex>
+      <Flex>
+        <EditingActions street={streetIndex} />
+      </Flex>
     </Flex>
   )
 }
-
-
 
 export default StreetAction

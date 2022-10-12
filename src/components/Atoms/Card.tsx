@@ -14,7 +14,7 @@ import { CardMark, CardNum } from '../../types/types'
 export interface CardProps {
   num: CardNum
   mark: CardMark
-  size?: 'md' | 'sd'
+  size?: 'md' | 'lg'
 }
 
 const Card: FC<CardProps> = (props) => {
@@ -24,7 +24,7 @@ const Card: FC<CardProps> = (props) => {
     case 'md':
       w = 6
       break
-    case 'sd':
+    case 'lg':
       w = 8
       break
     default:

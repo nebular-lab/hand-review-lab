@@ -1,9 +1,16 @@
-import { Button, Input, Textarea } from '@chakra-ui/react'
+import { Box, Button, Flex, Input, Textarea } from '@chakra-ui/react'
 import _ from 'lodash'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { editHistory } from '../../../../lib/editHistory'
-import { CardInterface, editingActionsState, editingCardsState } from '../../../../store/store'
+import {
+  CardInterface,
+  editingActionsState,
+  editingBlindState,
+  editingCardsState,
+  editingStreetPotState,
+  editingXPotState,
+} from '../../../../store/store'
 
 type Inputs = {
   history: string
@@ -11,32 +18,34 @@ type Inputs = {
 
 export default function HistoryForm() {
   const { register, handleSubmit } = useForm<Inputs>()
-  const [editingCards, setEditingCards] = useRecoilState(editingCardsState)
-  const [editingActions, setEditingActions] = useRecoilState(editingActionsState)
+  const setEditingCards = useSetRecoilState(editingCardsState)
+  const setEditingActions = useSetRecoilState(editingActionsState)
+  const setEditingBlind = useSetRecoilState(editingBlindState)
+  const setEditingXPot = useSetRecoilState(editingXPotState)
+  const setEditingStreetPot = useSetRecoilState(editingStreetPotState)
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const { action, cards } = editHistory(data.history)
+    const { action, cards, xPot, sb, bb, streetPot } = editHistory(data.history)
     setEditingCards(cards)
     setEditingActions(action)
+    setEditingBlind({ sb: sb, bb: bb })
+    setEditingXPot(xPot)
+    setEditingStreetPot(streetPot)
   }
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <Textarea
-        placeholder="ここにハンド履歴をペーストしてください"
-        {...register('history')}
-      />
-
-      {/* include validation with required or other standard HTML validation rules */}
-      {/* <input {...register("exampleRequired", { required: true })} /> */}
-      {/* errors will return when field validation fails  */}
-      {/* {errors.exampleRequired && <span>This field is required</span>} */}
-
-      <Button type="submit" colorScheme="green">
-        ハンド履歴登録
-      </Button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Flex direction="column">
+          <Textarea
+            placeholder="ここにハンド履歴をペーストしてください"
+            {...register('history')}
+          />
+          <Button type="submit" colorScheme="green">
+            PT4からハンド履歴を登録
+          </Button>
+        </Flex>
+      </form>
+    </>
   )
 }

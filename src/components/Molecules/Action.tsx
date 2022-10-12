@@ -1,23 +1,67 @@
 import { Flex, Menu, MenuList } from '@chakra-ui/react'
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import ActionButton from '../Atoms/ActionButton'
 import ActionItem from '../Atoms/ActionItem'
 
 export interface ActionMenuProps {
   canEdit: boolean
-  posText: string
-  moveText: string
+  pos: string
+  move: string
+  size: string
 }
 
 const Action: FC<ActionMenuProps> = (props) => {
-  const { canEdit, posText, moveText } = props
+  const { canEdit, pos, move, size } = props
+  let bg
+  let hover
+  switch (move) {
+    case 'bet':
+      bg = 'orange.400'
+      hover = 'orange.500'
+      break
+    case 'fold':
+      bg = 'gray.500'
+      hover = 'gray.600'
+      break
+    case 'raise':
+      bg = 'orange.400'
+      hover = 'orange.500'
+      break
+    case 'call':
+      bg = 'green.400'
+      hover = 'green.500'
+      break
+    case 'check':
+      bg = 'green.400'
+      hover = 'green.500'
+      break
+    case 'allin':
+      bg = 'red.500'
+      hover = 'red.600'
+      break
+    case '---':
+      bg = 'gray.300'
+      hover = 'gray.400'
+    default:
+      bg = 'gray.300'
+      hover = 'gray.400'
+  }
   const moveList = ['call', 'check', 'fold', 'bet', 'raise', 'allin', '---']
-  const posList = ['BB', 'SB', 'UTG', 'HJ', 'CO', 'BTN']
+  const posList = ['BB', 'SB', 'UTG', 'HJ', 'CO', 'BTN', '---']
   if (canEdit)
     return (
       <Flex>
         <Menu>
-          <ActionButton borderRightRadius={0}>{posText}</ActionButton>
+          <ActionButton
+            borderRightRadius={0}
+            bg="gray.600"
+            _hover={{ bg: 'gray.700' }}
+            color="white"
+            w="10"
+            fontSize="sm"
+          >
+            {pos}
+          </ActionButton>
           <MenuList>
             {posList?.map((item, index) => (
               <ActionItem key={index}>{item}</ActionItem>
@@ -25,7 +69,18 @@ const Action: FC<ActionMenuProps> = (props) => {
           </MenuList>
         </Menu>
         <Menu>
-          <ActionButton borderLeftRadius={0}>{moveText}</ActionButton>
+          <ActionButton
+            borderLeftRadius={0}
+            color="white"
+            bg={bg}
+            _hover={{ bg: hover }}
+            w="16"
+            fontSize="sm"
+            px=""
+          >
+            {`${move} ${' '}
+            ${size}`}
+          </ActionButton>
           <MenuList>
             {moveList?.map((item, index) => (
               <ActionItem key={index}>{item}</ActionItem>
@@ -38,10 +93,30 @@ const Action: FC<ActionMenuProps> = (props) => {
     return (
       <Flex>
         <Menu>
-          <ActionButton borderRightRadius={0}>{posText}</ActionButton>
+          <ActionButton
+            borderRightRadius={0}
+            bg="gray.600"
+            _hover={{ bg: 'gray.700' }}
+            color="white"
+            w="16"
+            fontSize="sm"
+          >
+            {pos}
+          </ActionButton>
         </Menu>
         <Menu>
-          <ActionButton borderLeftRadius={0}>{moveText}</ActionButton>
+          <ActionButton
+            borderLeftRadius={0}
+            color="white"
+            bg={bg}
+            _hover={{ bg: hover }}
+            w="20"
+            fontSize="sm"
+            px=""
+          >
+            {`${move} ${' '}
+            ${size}`}
+          </ActionButton>
         </Menu>
       </Flex>
     )

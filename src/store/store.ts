@@ -45,23 +45,24 @@ export const editingContentState = atom<string>({
   default: '',
 })
 
-export const editingPreflopPositionState = atom<number[]>({
-  key: 'editingPreflopPositionState',
-  default: [],
-})
-export const editingPreflopRaiseCountState = atom<number>({
-  key: 'editingPreflopRaiseCountState',
-  default: 0,
-})
-
 export const editingESState = atom<number>({
   key: 'editingESState',
   default: 0,
 })
 
-export const editingPotState = atom<number[]>({
-  key: 'editingPotState',
-  default: [0, 0, 0],
+export const editingStreetPotState = atom<number[]>({
+  key: 'editingStreetPotState',
+  default: [0, 0, 0, 0],
+})
+
+export const editingBlindState = atom<{ sb: number; bb: number }>({
+  key: 'editingBlindState',
+  default: { sb: 0, bb: 0 },
+})
+
+export const editingXPotState = atom<number>({
+  key: 'editingXPotState',
+  default: 0,
 })
 
 export interface SelectedAction {

@@ -12,14 +12,20 @@ const EditingActions: FC<EditingActionsProps> = (props) => {
   const [editingActions, setEditingActions] =
     useRecoilState(editingActionsState)
   return (
-    <Flex>
+    <Flex gap={1}>
       {editingActions[street].map((action, index) => {
+
+        let size = action.size.toString()
+        if (action.size === 0) {
+          size = ''
+        }
         return (
           <Action
             key={index}
-            posText={action.pos}
-            moveText={`${action.move}${action.size}`}
-            canEdit={true}
+            pos={action.pos}
+            move={action.move}
+            size={size}
+            canEdit={false}
           />
         )
       })}
