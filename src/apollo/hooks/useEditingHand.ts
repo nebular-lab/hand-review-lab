@@ -1,4 +1,4 @@
-import { Action, Card } from '../../types/types'
+import { Action, Card, Position } from '../../types/types'
 import { createReactiveVar } from '../createReactiveVar'
 import { ReactiveVarHooks, useReactiveVarHooks } from '../useReactiveVarHooks'
 
@@ -12,6 +12,7 @@ interface editingHandType {
   actions: Action[][]
   cards: Card[]
   pots: number[]
+  flopPlayers: Position[]
 }
 
 const initialValue: editingHandType = {
@@ -30,6 +31,7 @@ const initialValue: editingHandType = {
     { num: 'w', mark: 'w' },
   ],
   pots: [],
+  flopPlayers: [],
 }
 const editingHandVar = createReactiveVar(initialValue)
 

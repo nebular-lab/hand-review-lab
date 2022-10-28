@@ -15,13 +15,14 @@ export type CardNum =
   | 'w'
 export type CardMark = 's' | 'c' | 'h' | 'd' | 'w'
 
+export type Position = 'BTN' | 'CO' | 'HJ' | 'UTG' | 'SB' | 'BB'
 export interface Card {
   num: CardNum
   mark: CardMark
 }
 
 export interface Action {
-  pos: string
+  pos: Position
   move: string
   size: number
   street: number

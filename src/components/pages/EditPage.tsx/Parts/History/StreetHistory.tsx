@@ -1,4 +1,14 @@
-import { Box, Flex, Grid, GridItem, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  SimpleGrid,
+  Spacer,
+  Stack,
+  Text,
+  Wrap,
+} from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
@@ -16,7 +26,7 @@ const StreetAction: FC<StreetActionProps> = (props) => {
   let streetName = ''
   switch (streetIndex) {
     case 0:
-      streetName = 'preflop'
+      streetName = 'pf'
       break
     case 1:
       streetName = 'flop'
@@ -28,22 +38,31 @@ const StreetAction: FC<StreetActionProps> = (props) => {
       streetName = 'river'
   }
   return (
-    <Flex px="3" py="3">
-      <Flex w="70px">
-        <Text textTransform="uppercase" fontSize="sm">
+    <Grid
+      templateColumns="repeat(24,1fr)"
+      px="3"
+      py="3"
+      w="50rem"
+      bg="red.200"
+      alignItems="center"
+      gap={1}
+    >
+      <GridItem colSpan={2} bg="blue.200">
+        <Text  textTransform="uppercase">
           {streetName}
         </Text>
-      </Flex>
-      <Flex w="40px">
+      </GridItem>
+      <GridItem colSpan={2} bg="blue.200">
         <EditingPot street={streetIndex} />
-      </Flex>
-      <Flex w="100px">
+      </GridItem>
+      <GridItem colSpan={3} bg="blue.200">
+        {streetIndex === 0 && ' '}
         <Cards street={streetIndex} />
-      </Flex>
-      <Flex>
+      </GridItem>
+      <GridItem colSpan={17} bg="blue.200">
         <EditingActions street={streetIndex} />
-      </Flex>
-    </Flex>
+      </GridItem>
+    </Grid>
   )
 }
 

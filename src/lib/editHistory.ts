@@ -1,97 +1,143 @@
-import { Action, Card, CardMark, CardNum } from '../types/types'
+import { Action, Card, CardMark, CardNum, Position } from '../types/types'
 
-const history1 = `PokerStars Zoom Hand #238384400434:  Hold'em No Limit ($0.01/$0.02) - 2022/09/03 4:58:29 ET
+const history = `PokerStars Zoom Hand #238966161785:  Hold'em No Limit ($0.01/$0.02) - 2022/10/01 5:16:16 ET
 Table 'Halley' 6-max Seat #1 is the button
-Seat 1: Dirtymommm ($4.19 in chips)
-Seat 2: nebular77 ($2.03 in chips)
-Seat 3: ElDuderino204 ($1.90 in chips)
-Seat 4: mamemo3 ($2.92 in chips)
-Seat 5: c_guess11 ($1.40 in chips)
-Seat 6: tiltil55 ($1.88 in chips)
-nebular77: posts small blind $0.01
-ElDuderino204: posts big blind $0.02
+Seat 1: nebular77 ($2.16 in chips)
+Seat 2: 3 Titzen 3 ($1.09 in chips)
+Seat 3: Mokujin2 ($2 in chips)
+Seat 4: ilidum9 ($9.89 in chips)
+Seat 5: ilhan100 ($1.90 in chips)
+Seat 6: ray147741 ($0.83 in chips)
+3 Titzen 3: posts small blind $0.01
+Mokujin2: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to nebular77 [Ah Qd]
-c_guess11 is disconnected
-mamemo3: folds
-c_guess11: folds
-mamemo3 is disconnected
-tiltil55: raises $0.08 to $0.10
-Dirtymommm: folds
-Dirtymommm is disconnected
-nebular77: raises $0.24 to $0.34
-ElDuderino204: folds
-tiltil55: calls $0.24
-*** FLOP *** [9h Jh Kc]
-nebular77: bets $0.22
-tiltil55: calls $0.22
-*** TURN *** [9h Jh Kc] [8c]
-nebular77: bets $1.32
-tiltil55: calls $1.32 and is all-in
-*** RIVER *** [9h Jh Kc 8c] [9c]
-*** SHOW DOWN ***
-nebular77: shows [Ah Qd] (a pair of Nines)
-tiltil55: shows [7s 7d] (two pair, Nines and Sevens)
-tiltil55 collected $3.65 from pot
+Dealt to nebular77 [2h 9d]
+ilidum9: folds
+ilidum9 is disconnected
+ilhan100: raises $0.02 to $0.04
+ray147741: folds
+nebular77: folds
+nebular77 is disconnected
+3 Titzen 3: calls $0.03
+Mokujin2: raises $0.16 to $0.20
+ilhan100: calls $0.16
+3 Titzen 3: folds
+*** FLOP *** [8s 9s Qs]
+3 Titzen 3 is disconnected
+Mokujin2: checks
+ilhan100: checks
+*** TURN *** [8s 9s Qs] [6s]
+Mokujin2: checks
+ilhan100: checks
+*** RIVER *** [8s 9s Qs 6s] [Ac]
+Mokujin2: bets $0.28
+ilhan100: folds
+Uncalled bet ($0.28) returned to Mokujin2
+Mokujin2 collected $0.42 from pot
+Mokujin2: doesn't show hand
+ilhan100 is disconnected
 *** SUMMARY ***
-Total pot $3.78 | Rake $0.13
-Board [9h Jh Kc 8c 9c]
-Seat 1: Dirtymommm (button) folded before Flop (didn't bet)
-Seat 2: nebular77 (small blind) showed [Ah Qd] and lost with a pair of Nines
-Seat 3: ElDuderino204 (big blind) folded before Flop
-Seat 4: mamemo3 folded before Flop (didn't bet)
-Seat 5: c_guess11 folded before Flop (didn't bet)
-Seat 6: tiltil55 showed [7s 7d] and won ($3.65) with two pair, Nines and Sevens
+Total pot $0.44 | Rake $0.02
+Board [8s 9s Qs 6s Ac]
+Seat 1: nebular77 (button) folded before Flop (didn't bet)
+Seat 2: 3 Titzen 3 (small blind) folded before Flop
+Seat 3: Mokujin2 (big blind) collected ($0.42)
+Seat 4: ilidum9 folded before Flop (didn't bet)
+Seat 5: ilhan100 folded on the River
+Seat 6: ray147741 folded before Flop (didn't bet)
 `
 
-const history2 = `PokerStars Zoom Hand #238965739365:  Hold'em No Limit ($0.01/$0.02) - 2022/10/01 4:26:49 ET
+const history2 = `PokerStars Zoom Hand #239397098324:  Hold'em No Limit ($0.01/$0.02) - 2022/10/23 2:11:09 ET
 Table 'Halley' 6-max Seat #1 is the button
-Seat 1: 1Ropke ($2 in chips)
-Seat 2: nebular77 ($2.44 in chips)
-Seat 3: DRYADkA ($1.97 in chips)
-Seat 4: meechy__lighto ($16.86 in chips)
-Seat 5: badjoke1333 ($2.46 in chips)
-Seat 6: ffwq1 ($0.87 in chips)
-nebular77: posts small blind $0.01
-DRYADkA: posts big blind $0.02
+Seat 1: nebular77 ($2.06 in chips)
+Seat 2: joohny188 ($2.21 in chips)
+Seat 3: dima19852408 ($1.28 in chips)
+Seat 4: UlkigerUlf ($2.13 in chips)
+Seat 5: morin1221 ($2.08 in chips)
+Seat 6: LuNa WL ($1.06 in chips)
+joohny188: posts small blind $0.01
+dima19852408: posts big blind $0.02
 *** HOLE CARDS ***
-Dealt to nebular77 [7s Ks]
-ffwq1 is disconnected
-badjoke1333 is disconnected
-meechy__lighto: folds
-badjoke1333: folds
-ffwq1: folds
-meechy__lighto is disconnected
-1Ropke: raises $0.02 to $0.04
-nebular77: raises $0.12 to $0.16
-DRYADkA: folds
-DRYADkA is disconnected
-1Ropke: calls $0.12
-*** FLOP *** [Js 8s 9d]
-nebular77: bets $0.11
-1Ropke: raises $0.19 to $0.30
-nebular77: calls $0.19
-*** TURN *** [Js 8s 9d] [Kc]
-nebular77: checks
-1Ropke: bets $0.67
-nebular77: calls $0.67
-*** RIVER *** [Js 8s 9d Kc] [6h]
-nebular77: checks
-1Ropke: bets $0.87 and is all-in
-nebular77: calls $0.87
+Dealt to nebular77 [Ks 2s]
+UlkigerUlf: folds
+UlkigerUlf is disconnected
+LuNa WL is disconnected
+morin1221: folds
+LuNa WL: folds
+morin1221 is disconnected
+nebular77: raises $0.03 to $0.05
+joohny188: folds
+dima19852408: calls $0.03
+*** FLOP *** [3s 5s 3c]
+dima19852408: checks
+nebular77: bets $0.04
+dima19852408: raises $0.06 to $0.10
+nebular77: calls $0.06
+*** TURN *** [3s 5s 3c] [4c]
+dima19852408: bets $0.13
+nebular77: calls $0.13
+*** RIVER *** [3s 5s 3c 4c] [7s]
+dima19852408: bets $0.27
+nebular77: raises $1.36 to $1.63
+dima19852408: calls $0.73 and is all-in
+Uncalled bet ($0.63) returned to nebular77
 *** SHOW DOWN ***
-1Ropke: shows [8d 8h] (three of a kind, Eights)
-nebular77: shows [7s Ks] (a pair of Kings)
-1Ropke collected $3.88 from pot
+nebular77: shows [Ks 2s] (a flush, King high)
+dima19852408: shows [6s 6h] (a straight, Three to Seven)
+nebular77 collected $2.48 from pot
 *** SUMMARY ***
-Total pot $4.02 | Rake $0.14
-Board [Js 8s 9d Kc 6h]
-Seat 1: 1Ropke (button) showed [8d 8h] and won ($3.88) with three of a kind, Eights
-Seat 2: nebular77 (small blind) showed [7s Ks] and lost with a pair of Kings
-Seat 3: DRYADkA (big blind) folded before Flop
-Seat 4: meechy__lighto folded before Flop (didn't bet)
-Seat 5: badjoke1333 folded before Flop (didn't bet)
-Seat 6: ffwq1 folded before Flop (didn't bet)
+Total pot $2.57 | Rake $0.09
+Board [3s 5s 3c 4c 7s]
+Seat 1: nebular77 (button) showed [Ks 2s] and won ($2.48) with a flush, King high
+Seat 2: joohny188 (small blind) folded before Flop
+Seat 3: dima19852408 (big blind) showed [6s 6h] and lost with a straight, Three to Seven
+Seat 4: UlkigerUlf folded before Flop (didn't bet)
+Seat 5: morin1221 folded before Flop (didn't bet)
+Seat 6: LuNa WL folded before Flop (didn't bet)
+`
+const history3 = `
+PokerStars Zoom Hand #238965479000:  Hold'em No Limit ($0.01/$0.02) - 2022/10/01 3:52:31 ET
+Table 'Halley' 6-max Seat #1 is the button
+Seat 1: HugeDwarf84 ($5.57 in chips)
+Seat 2: Ramble604 ($5.66 in chips)
+Seat 3: sourice_xx ($4.72 in chips)
+Seat 4: Szymes KrK ($2.85 in chips)
+Seat 5: Jbpokerino ($2.20 in chips)
+Seat 6: nebular77 ($2.95 in chips)
+Ramble604: posts small blind $0.01
+sourice_xx: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to nebular77 [Ac Ad]
+Jbpokerino is disconnected
+Ramble604 is disconnected
+Szymes KrK: folds
+Jbpokerino: folds
+Szymes KrK is disconnected
+nebular77: raises $0.03 to $0.05
+sourice_xx is disconnected
+HugeDwarf84: raises $0.13 to $0.18
+Ramble604: folds
+sourice_xx: folds
+nebular77: raises $0.32 to $0.50
+HugeDwarf84: raises $5.07 to $5.57 and is all-in
+nebular77: calls $2.45 and is all-in
+Uncalled bet ($2.62) returned to HugeDwarf84
+*** FLOP *** [2c Jh 4d]
+*** TURN *** [2c Jh 4d] [Jc]
+*** RIVER *** [2c Jh 4d Jc] [Ks]
+*** SHOW DOWN ***
+nebular77: shows [Ac Ad] (two pair, Aces and Jacks)
+HugeDwarf84: shows [Th Tc] (two pair, Jacks and Tens)
+nebular77 collected $5.72 from pot
+*** SUMMARY ***
+Total pot $5.93 | Rake $0.21
+Board [2c Jh 4d Jc Ks]
+Seat 1: HugeDwarf84 (button) showed [Th Tc] and lost with two pair, Jacks and Tens
+Seat 2: Ramble604 (small blind) folded before Flop
+Seat 3: sourice_xx (big blind) folded before Flop
+Seat 4: Szymes KrK folded before Flop (didn't bet)
+Seat 5: Jbpokerino folded before Flop (didn't bet)
+Seat 6: nebular77 showed [Ac Ad] and won ($5.72) with two pair, Aces and Jacks
 `
 
 export const editHistory = (history: string) => {
@@ -104,8 +150,8 @@ export const editHistory = (history: string) => {
   const cards: Card[] = []
   const actions: Action[][] = [[], [], [], []]
   let nowStreet = -1
-  const players: { pos: string; name: string; pot: number[] }[] = []
-  const posList = ['BTN', 'SB', 'BB', 'UTG', 'HJ', 'CO']
+  const players: { pos: Position; name: string; pot: number[] }[] = []
+  const posList: Position[] = ['BTN', 'SB', 'BB', 'UTG', 'HJ', 'CO']
   let posPushIndex = 0
   splitedhistory.forEach((line) => {
     if (line.includes('in chips)')) {
@@ -113,9 +159,10 @@ export const editHistory = (history: string) => {
       // TODO プレイヤー名に空白があった時
       players.push({
         pos: posList[posPushIndex],
-        name: line.split(' ').slice(2, -3)[0],
+        name: line.split(' ').slice(2, -3).join(' '),
         pot: [0, 0, 0, 0],
       })
+      console.log(players)
       posPushIndex++
     }
   })
@@ -123,7 +170,8 @@ export const editHistory = (history: string) => {
   splitedhistory.forEach((line) => {
     if (line.includes('posts small blind')) {
       sb = Number(line.split(' ').slice(-1)[0].replace('$', ''))
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -4).join(' ').slice(0, -1)
+      console.log(name)
       players.forEach((player) => {
         if (player.name == name) {
           player.pot[0] = sb
@@ -132,7 +180,7 @@ export const editHistory = (history: string) => {
     }
     if (line.includes('posts big blind')) {
       bb = Number(line.split(' ').slice(-1)[0].replace('$', ''))
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -4).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           player.pot[0] = bb
@@ -172,7 +220,7 @@ export const editHistory = (history: string) => {
       })
     }
     if (line.includes(': folds')) {
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -1).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -186,7 +234,7 @@ export const editHistory = (history: string) => {
       })
     }
     if (line.includes(': checks')) {
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -1).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -200,9 +248,9 @@ export const editHistory = (history: string) => {
       })
     }
 
-    if (line.includes(': calls')) {
+    if (line.includes(': calls') && !line.includes('and is all-in')) {
       const size = Number(line.split(' ').slice(-1)[0].replace('$', ''))
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -2).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -218,7 +266,7 @@ export const editHistory = (history: string) => {
     }
     if (line.includes(': bets') && !line.includes('and is all-in')) {
       const size = Number(line.split(' ').slice(-1)[0].replace('$', ''))
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -2).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -234,7 +282,7 @@ export const editHistory = (history: string) => {
     }
     if (line.includes(': raises') && !line.includes('and is all-in')) {
       const size = Number(line.split(' ').slice(-1)[0].replace('$', ''))
-      const name = line.split(' ')[0].slice(0, -1)
+      const name = line.split(' ').slice(0, -4).join(' ').slice(0, -1)
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -256,7 +304,12 @@ export const editHistory = (history: string) => {
           .slice(-1)[0]
           .replace('$', '')
       )
-      const name = line.split(' ')[0].slice(0, -1)
+      let name = ''
+      if (line.includes(': raises')) {
+        name = line.split(' ').slice(0, -7).join(' ').slice(0, -1)
+      } else {
+        name = line.split(' ').slice(0, -5).join(' ').slice(0, -1)
+      }
       players.forEach((player) => {
         if (player.name == name) {
           actions[nowStreet].push({
@@ -275,12 +328,18 @@ export const editHistory = (history: string) => {
     cards.push({ mark: 'w', num: 'w' })
   }
   let xPot: number = 1
+  let flopPlayers: Position[] = ['BTN', 'SB', 'BB', 'UTG', 'HJ', 'CO']
   actions[0].forEach((action) => {
     if (action.move == 'raise') {
       xPot++
     }
+    if (action.move == 'fold') {
+      flopPlayers = flopPlayers.filter(
+        (flopPlayer) => flopPlayer !== action.pos
+      )
+    }
   })
-  console.log(players)
+  console.log(flopPlayers)
   return {
     action: actions,
     cards: cards,
@@ -288,5 +347,6 @@ export const editHistory = (history: string) => {
     bb: bb,
     xPot: xPot,
     pots: pots,
+    flopPlayers: flopPlayers,
   }
 }

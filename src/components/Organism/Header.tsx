@@ -7,7 +7,15 @@ export function Header() {
     useAuth0()
   console.log(user)
   return (
-    <Flex h={14} bg="white" alignItems="center" px={20}>
+    <Flex
+      as="header"
+      h={14}
+      w="full"
+      bg="white"
+      alignItems="center"
+      px={8}
+      position="fixed"
+    >
       <Link href="/hands">
         <Text fontWeight="bold">ハンドレビュー研究所</Text>
       </Link>

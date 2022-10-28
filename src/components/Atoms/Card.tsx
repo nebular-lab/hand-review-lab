@@ -5,6 +5,7 @@ import {
   Badge,
   Box,
   ColorProps,
+  Flex,
   Text,
   theme,
 } from '@chakra-ui/react'
@@ -56,17 +57,18 @@ const Card: FC<CardProps> = (props) => {
   }
 
   return (
-    <Badge
+    <Flex
       bg={bg}
       w={w}
       h={h}
       textColor="white"
+      fontWeight="semibold"
       fontSize={size}
-      justifyItems="center"
+      justifyContent="center"
       alignItems="center"
     >
       {num}
-    </Badge>
+    </Flex>
   )
 }
 

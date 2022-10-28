@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, SimpleGrid, Wrap } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilState } from 'recoil'
 import { useEditingHand } from '../../../../../apollo/hooks/useEditingHand'
@@ -12,10 +12,11 @@ const EditingActions: FC<EditingActionsProps> = (props) => {
   // const [editingActions, setEditingActions] =
   //   useRecoilState(editingActionsState)
   const [editingHand] = useEditingHand()
+  const bb = editingHand.blinds.bb
   return (
-    <Flex gap={1}>
+    <SimpleGrid columns={4} gap={1}>
       {editingHand.actions[street].map((action, index) => {
-        let size = action.size.toString()
+        let size = (Math.round((action.size / bb) * 10) / 10).toString()
         if (action.size === 0) {
           size = ''
         }
@@ -29,7 +30,7 @@ const EditingActions: FC<EditingActionsProps> = (props) => {
           />
         )
       })}
-    </Flex>
+    </SimpleGrid>
   )
 }
 

@@ -11,15 +11,12 @@ type Inputs = {
 
 export default function HistoryForm() {
   const { register, handleSubmit } = useForm<Inputs>()
-  // const setEditingCards = useSetRecoilState(editingCardsState)
-  // const setEditingActions = useSetRecoilState(editingActionsState)
-  // const setEditingBlind = useSetRecoilState(editingBlindState)
-  // const setEditingXPot = useSetRecoilState(editingXPotState)
-  // const setEditingStreetPot = useSetRecoilState(editingStreetPotState)
   const [editingHand, setEditingHand] = useEditingHand()
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const { action, cards, xPot, sb, bb, pots } = editHistory(data.history)
+    const { action, cards, xPot, sb, bb, pots, flopPlayers } = editHistory(
+      data.history
+    )
     setEditingHand({
       ...editingHand,
       actions: action,
@@ -27,6 +24,7 @@ export default function HistoryForm() {
       xPot: xPot,
       blinds: { bb: bb, sb: sb },
       pots: pots,
+      flopPlayers: flopPlayers,
     })
   }
 
