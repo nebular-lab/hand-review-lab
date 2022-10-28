@@ -27,53 +27,23 @@ import {
   Pots_Update_Column,
 } from '../../../gql/graphql'
 import { INSERT_HAND } from '../../../graphql/queries'
-import {
-  editingActionsState,
-  editingCardsState,
-  editingContentState,
-  editingESState,
-  editingStreetPotState,
-  editingTitleState,
-  isDataState,
-} from '../../../store/store'
+
 import History from './Parts/History/Index'
 import HistoryForm from './Parts/Form/Index'
-import Layout from '../../Template/Layout'
+import Layout from '../../Atoms/Layout'
 import dynamic from 'next/dynamic'
 import { Editor } from './Parts/Editor/Index'
+import { useEditingHand } from '../../../apollo/hooks/useEditingHand'
 
 const EditPage = () => {
-  const [editingActions, setEditingActions] =
-    useRecoilState(editingActionsState)
-  const [editingCards, setEditingCards] = useRecoilState(editingCardsState)
-  const [editingES, setEditingES] = useRecoilState(editingESState)
-  const [editingPot, setEditingPot] = useRecoilState(editingStreetPotState)
-  const [editingTitle, setEditingTitle] = useRecoilState(editingTitleState)
-  const [editingContent, setEditingContent] =
-    useRecoilState(editingContentState)
-  const [isData, setIsData] = useRecoilState(isDataState)
-
-  useEffect(() => {
-    setEditingActions([[], [], [], []])
-    setEditingCards([
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-    ])
-    setEditingES(100)
-    setEditingPot([0, 0, 0, 0])
-    setEditingTitle('')
-    setEditingContent('')
-    setIsData(true)
-  }, [])
+  const [editingHand, setEditingHand] = useEditingHand()
+  useEffect(() => {}, [])
 
   const [insertHand, { loading, error }] = useMutation(INSERT_HAND)
   const router = useRouter()
   const onClickSave = () => {
     const actionList: Actions_Insert_Input[] = []
-    editingActions.forEach((street) => {
+    editingHand.actions.forEach((street) => {
       street.forEach((action) => {
         actionList.push({
           position: action.pos,
@@ -85,7 +55,7 @@ const EditPage = () => {
       })
     })
     const cardList: Hands_Cards_Insert_Input[] = []
-    editingCards.forEach((card, index) => {
+    editingHand.cards.forEach((card, index) => {
       cardList.push({
         card: {
           data: {
@@ -104,15 +74,15 @@ const EditPage = () => {
     insertHand({
       variables: {
         object: {
-          title: editingTitle,
-          es: editingES,
-          content: editingContent,
+          title: editingHand.title,
+          es: editingHand.es,
+          content: editingHand.content,
           pots: {
             data: [
-              { size: editingPot[0], street: 0 },
-              { size: editingPot[1], street: 1 },
-              { size: editingPot[2], street: 2 },
-              { size: editingPot[3], street: 3 },
+              { size: editingHand.pots[0], street: 0 },
+              { size: editingHand.pots[1], street: 1 },
+              { size: editingHand.pots[2], street: 2 },
+              { size: editingHand.pots[3], street: 3 },
             ],
             on_conflict: {
               constraint: Pots_Constraint.PotsHandIdStreetKey,
@@ -154,8 +124,7 @@ const EditPage = () => {
         <Flex direction="column" w="full" bg="green.100" gap={2}>
           <History />
           <Box bg="white" w="full">
-
-              <Editor />
+            <Editor />
           </Box>
         </Flex>
         <VStack bg="cyan.100" h="100px">

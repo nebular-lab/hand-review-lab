@@ -14,3 +14,16 @@ export type CardNum =
   | 'A'
   | 'w'
 export type CardMark = 's' | 'c' | 'h' | 'd' | 'w'
+
+export interface Card {
+  num: CardNum
+  mark: CardMark
+}
+
+export interface Action {
+  pos: string
+  move: string
+  size: number
+  street: number
+  order: number
+}

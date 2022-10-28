@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 import HandTable from './Parts/HandTable'
 import { Header } from '../../Organism/Header'
-import Layout from '../../Template/Layout'
+import Layout from '../../Atoms/Layout'
 
 const HandsPage = () => {
   return (

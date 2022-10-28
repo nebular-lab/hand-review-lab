@@ -55,6 +55,7 @@ export const Editor: FC = () => {
           placeholder={
             <div className={styles.placeholder}>良いポーカーライフを！</div>
           }
+          
         />
       </div>
 

@@ -1,7 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
-import { editingCardsState } from '../../../../../store/store'
+import { useEditingHand } from '../../../../../apollo/hooks/useEditingHand'
+
 import Card from '../../../../Atoms/Card'
 
 interface CardProps {
@@ -9,7 +10,7 @@ interface CardProps {
 }
 const Cards: FC<CardProps> = (props) => {
   const { street } = props
-  const [editingCards, setEditingCards] = useRecoilState(editingCardsState)
+  const [editingHand] = useEditingHand()
   const cardIndexes: number[] = []
   switch (street) {
     case 0:
@@ -33,8 +34,8 @@ const Cards: FC<CardProps> = (props) => {
         return (
           <Card
             key={index}
-            num={editingCards[cardIndex].num}
-            mark={editingCards[cardIndex].mark}
+            num={editingHand.cards[cardIndex].num}
+            mark={editingHand.cards[cardIndex].mark}
             size="md"
           />
         )

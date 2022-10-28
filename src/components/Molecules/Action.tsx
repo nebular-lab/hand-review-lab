@@ -57,7 +57,7 @@ const Action: FC<ActionMenuProps> = (props) => {
             bg="gray.600"
             _hover={{ bg: 'gray.700' }}
             color="white"
-            w="10"
+            w="8"
             fontSize="sm"
           >
             {pos}
@@ -74,7 +74,7 @@ const Action: FC<ActionMenuProps> = (props) => {
             color="white"
             bg={bg}
             _hover={{ bg: hover }}
-            w="16"
+            w="14"
             fontSize="sm"
             px=""
           >

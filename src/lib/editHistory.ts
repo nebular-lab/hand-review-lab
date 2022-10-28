@@ -1,6 +1,4 @@
-import { syncBuiltinESMExports } from 'module'
-import { ActionInterface, CardInterface } from '../store/store'
-import { CardMark, CardNum } from '../types/types'
+import { Action, Card, CardMark, CardNum } from '../types/types'
 
 const history1 = `PokerStars Zoom Hand #238384400434:  Hold'em No Limit ($0.01/$0.02) - 2022/09/03 4:58:29 ET
 Table 'Halley' 6-max Seat #1 is the button
@@ -98,13 +96,13 @@ Seat 6: ffwq1 folded before Flop (didn't bet)
 
 export const editHistory = (history: string) => {
   let splitedhistory = history.split('\n')
-  let streetPot = [0, 0, 0, 0]
+  let pots = [0, 0, 0, 0]
 
   let playerCount = 0
   let sb: number = 0
   let bb: number = 0
-  const cards: CardInterface[] = []
-  const actions: ActionInterface[][] = [[], [], [], []]
+  const cards: Card[] = []
+  const actions: Action[][] = [[], [], [], []]
   let nowStreet = -1
   const players: { pos: string; name: string; pot: number[] }[] = []
   const posList = ['BTN', 'SB', 'BB', 'UTG', 'HJ', 'CO']
@@ -151,26 +149,26 @@ export const editHistory = (history: string) => {
 
     if (line.includes('*** HOLE CARDS ***')) {
       nowStreet = 0
-      streetPot[0] = sb + bb
+      pots[0] = sb + bb
     }
     if (line.includes('*** FLOP ***')) {
       nowStreet = 1
       players.forEach((player) => {
-        streetPot[1] += player.pot[0]
+        pots[1] += player.pot[0]
       })
     }
     if (line.includes('*** TURN ***')) {
       nowStreet = 2
-      streetPot[2] += streetPot[1]
+      pots[2] += pots[1]
       players.forEach((player) => {
-        streetPot[2] += player.pot[1]
+        pots[2] += player.pot[1]
       })
     }
     if (line.includes('*** RIVER ***')) {
       nowStreet = 3
-      streetPot[3] += streetPot[2]
+      pots[3] += pots[2]
       players.forEach((player) => {
-        streetPot[3] += player.pot[2]
+        pots[3] += player.pot[2]
       })
     }
     if (line.includes(': folds')) {
@@ -289,6 +287,6 @@ export const editHistory = (history: string) => {
     sb: sb,
     bb: bb,
     xPot: xPot,
-    streetPot: streetPot,
+    pots: pots,
   }
 }

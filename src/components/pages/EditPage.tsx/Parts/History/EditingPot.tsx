@@ -1,15 +1,15 @@
 import { Flex } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { editingStreetPotState } from '../../../../../store/store'
+import { useEditingHand } from '../../../../../apollo/hooks/useEditingHand'
 
 interface EditingPotProps {
   street: number
 }
 const EditingPot: FC<EditingPotProps> = (props) => {
   const { street } = props
-  const streetPot = useRecoilValue(editingStreetPotState)
-  return <Flex>{streetPot[street]}</Flex>
+  const [editingHand] = useEditingHand()
+  return <Flex>{editingHand.pots[street]}</Flex>
 }
 
 export default EditingPot
