@@ -1,5 +1,0 @@
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },
-      { num: 'w', mark: 'w' },

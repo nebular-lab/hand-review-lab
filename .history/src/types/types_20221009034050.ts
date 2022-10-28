@@ -1,1 +1,0 @@
-export type CardNum="2"|"3"|
