@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilValue } from 'recoil'
-import { editingStreetPotState } from '../../../../store/store'
+import { editingStreetPotState } from '../../../../../store/store'
 
 interface EditingPotProps {
   street: number

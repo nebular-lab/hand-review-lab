@@ -2,7 +2,7 @@ import { Box, Flex, Grid, GridItem, Stack, Text } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilState } from 'recoil'
 
-import Card from '../../../Atoms/Card'
+import Card from '../../../../Atoms/Card'
 import EditingActions from './EditingActions'
 import Cards from './EditingCards'
 import EditingPot from './EditingPot'

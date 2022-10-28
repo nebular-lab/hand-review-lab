@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { useRecoilState } from 'recoil'
-import { editingActionsState } from '../../../../store/store'
-import Action from '../../../Molecules/Action'
+import { editingActionsState } from '../../../../../store/store'
+import Action from '../../../../Molecules/Action'
 
 interface EditingActionsProps {
   street: number
@@ -14,7 +14,6 @@ const EditingActions: FC<EditingActionsProps> = (props) => {
   return (
     <Flex gap={1}>
       {editingActions[street].map((action, index) => {
-
         let size = action.size.toString()
         if (action.size === 0) {
           size = ''

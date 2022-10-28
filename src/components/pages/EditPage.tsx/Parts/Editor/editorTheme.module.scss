@@ -1,0 +1,41 @@
+.h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 24px 0 24px;
+}
+
+.h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px 0 20px;
+}
+
+.ul {
+  margin-left: 8px;
+  list-style-position: inside;
+}
+
+.ol {
+  margin-left: 8px;
+  list-style-position: inside;
+}
+
+.listitem {
+  margin: 4px 32px;
+}
+
+.nestedListItem {
+  list-style: none;
+}
+
+.textBold {
+  font-weight: bold;
+}
+
+.textUnderline {
+  text-decoration: underline;
+}
+
+.textUnderlineStrikethrough {
+  text-decoration: underline line-through;
+}

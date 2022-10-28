@@ -1,6 +1,9 @@
 import { useMutation } from '@apollo/client'
 import {
   Box,
+  Button,
+  ChakraProvider,
+  Container,
   Flex,
   Grid,
   GridItem,
@@ -33,9 +36,11 @@ import {
   editingTitleState,
   isDataState,
 } from '../../../store/store'
-import History from './Parts/History'
-import HistoryForm from './Parts/HistoryForm'
+import History from './Parts/History/Index'
+import HistoryForm from './Parts/Form/Index'
 import Layout from '../../Template/Layout'
+import dynamic from 'next/dynamic'
+import { Editor } from './Parts/Editor/Index'
 
 const EditPage = () => {
   const [editingActions, setEditingActions] =
@@ -145,15 +150,21 @@ const EditPage = () => {
   }
   return (
     <Layout>
-      <HStack mx="20" mt="20">
-        <VStack w="full">
+      <Flex bg="orange.100" mx="40" my="20" alignItems="start" gap={2}>
+        <Flex direction="column" w="full" bg="green.100" gap={2}>
           <History />
-          <Textarea />
-        </VStack>
-        <Box w="80" bg="white">
+          <Box bg="white" w="full">
+
+              <Editor />
+          </Box>
+        </Flex>
+        <VStack bg="cyan.100" h="100px">
+          <Button onClick={onClickSave} colorScheme="blue">
+            保存
+          </Button>
           <HistoryForm />
-        </Box>
-      </HStack>
+        </VStack>
+      </Flex>
     </Layout>
   )
 }

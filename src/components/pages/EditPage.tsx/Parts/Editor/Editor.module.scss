@@ -1,0 +1,24 @@
+.editorContainer {
+  position: relative;
+  padding: 48px 120px 100px;
+  min-height: 480px;
+}
+
+.contentEditable {
+  outline: none;
+  box-shadow: none;
+  font-size: large;
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.placeholder {
+  position: absolute;
+  color: #888888;
+  top: 48px;
+  left: 120px;
+  pointer-events: none;
+  user-select: none;
+}

@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
 import { FC } from 'react'
 import { useRecoilState } from 'recoil'
-import { editingCardsState } from '../../../../store/store'
-import Card from '../../../Atoms/Card'
+import { editingCardsState } from '../../../../../store/store'
+import Card from '../../../../Atoms/Card'
 
 interface CardProps {
   street: number

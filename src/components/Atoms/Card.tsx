@@ -20,12 +20,15 @@ export interface CardProps {
 const Card: FC<CardProps> = (props) => {
   const { num, mark, size = 'md' } = props
   let w
+  let h
   switch (size) {
     case 'md':
       w = 6
+      h = 8
       break
     case 'lg':
       w = 8
+      h = 10
       break
     default:
       break
@@ -53,11 +56,17 @@ const Card: FC<CardProps> = (props) => {
   }
 
   return (
-    <AspectRatio ratio={3 / 4} w={w}>
-      <Badge bg={bg} textColor="white" fontSize={size}>
-        {num}
-      </Badge>
-    </AspectRatio>
+    <Badge
+      bg={bg}
+      w={w}
+      h={h}
+      textColor="white"
+      fontSize={size}
+      justifyItems="center"
+      alignItems="center"
+    >
+      {num}
+    </Badge>
   )
 }
 

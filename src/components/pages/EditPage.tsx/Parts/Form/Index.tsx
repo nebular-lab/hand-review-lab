@@ -2,7 +2,7 @@ import { Box, Button, Flex, Input, Textarea } from '@chakra-ui/react'
 import _ from 'lodash'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { editHistory } from '../../../../lib/editHistory'
+import { editHistory } from '../../../../../lib/editHistory'
 import {
   CardInterface,
   editingActionsState,
@@ -10,7 +10,7 @@ import {
   editingCardsState,
   editingStreetPotState,
   editingXPotState,
-} from '../../../../store/store'
+} from '../../../../../store/store'
 
 type Inputs = {
   history: string
@@ -39,6 +39,7 @@ export default function HistoryForm() {
         <Flex direction="column">
           <Textarea
             placeholder="ここにハンド履歴をペーストしてください"
+            bg="white"
             {...register('history')}
           />
           <Button type="submit" colorScheme="green">

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Auth0Provider domain={domain} clientId={clientId} audience={audience}>
       <AuthorizedApolloProvider>
         <RecoilRoot>
-          <ChakraProvider>
+          <ChakraProvider >
             <Component {...pageProps} />
           </ChakraProvider>
         </RecoilRoot>
