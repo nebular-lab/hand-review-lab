@@ -34,9 +34,7 @@ https://user-images.githubusercontent.com/78769350/191333974-4d7803d1-8cc0-468c-
 フロントエンド
 - React/Nextjs
 - TypeScript
-- tailwindCSS
-- MantineUI 
-- recoil
+- ChakraUI
 - ApolloClient
 
 バックエンド
