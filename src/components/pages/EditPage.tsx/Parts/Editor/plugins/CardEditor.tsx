@@ -8,11 +8,11 @@
 
 import * as React from 'react'
 import { ChangeEvent, RefObject } from 'react'
-import { CardInterface } from '../../../../../../store/store'
+import { Card as cardType} from '../../../../../../types/types'
 import Card from '../../../../../Atoms/Card'
 
 type BaseCardEditorProps = {
-  card: CardInterface
+  card: cardType
 }
 
 export default function CardEditor({ card }: BaseCardEditorProps): JSX.Element {

@@ -24,10 +24,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import CardEditor from './CardEditor'
 import KatexRenderer from './KatexRenderer'
 import { $isCardNode } from './CardNode'
-import { CardInterface } from '../../../../../../store/store'
+import { Card } from '../../../../../../types/types'
 
 type CardComponentProps = {
-  card: CardInterface
+  card: Card
   nodeKey: NodeKey
 }
 

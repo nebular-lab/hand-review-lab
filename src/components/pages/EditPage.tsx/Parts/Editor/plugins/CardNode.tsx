@@ -17,7 +17,7 @@ import type {
 import { DecoratorNode } from 'lexical'
 import * as React from 'react'
 import { Suspense } from 'react'
-import { CardInterface } from '../../../../../../store/store'
+import { Card } from '../../../../../../types/types'
 import CardComponent from './CardComponent'
 
 // const CardComponent = React.lazy(
@@ -28,13 +28,13 @@ import CardComponent from './CardComponent'
 export type SerializedCardNode = Spread<
   {
     type: 'card'
-    card: CardInterface
+    card: Card
   },
   SerializedLexicalNode
 >
 
 export class CardNode extends DecoratorNode<JSX.Element> {
-  __card: CardInterface
+  __card: Card
 
   static getType(): string {
     return 'card'
@@ -44,7 +44,7 @@ export class CardNode extends DecoratorNode<JSX.Element> {
     return new CardNode(node.__card, node.__key)
   }
 
-  constructor(card: CardInterface, key?: NodeKey) {
+  constructor(card: Card, key?: NodeKey) {
     super(key)
     this.__card = card
   }
@@ -71,11 +71,11 @@ export class CardNode extends DecoratorNode<JSX.Element> {
     return this.__inline !== prevNode.__inline
   }
 
-  getCard(): CardInterface {
+  getCard(): Card {
     return this.__card
   }
 
-  setCard(card: CardInterface): void {
+  setCard(card: Card): void {
     const writable = this.getWritable()
     writable.__card = card
   }
@@ -93,7 +93,7 @@ export class CardNode extends DecoratorNode<JSX.Element> {
   }
 }
 
-export function $createCardNode(card: CardInterface): CardNode {
+export function $createCardNode(card: Card): CardNode {
   const cardNode = new CardNode(card)
   return cardNode
 }

@@ -18,12 +18,12 @@ import {
   LexicalCommand,
 } from 'lexical'
 import { useEffect } from 'react'
+import { Card } from '../../../../../../types/types'
 
 import { $createCardNode, CardNode } from './CardNode'
-import { CardInterface } from '../../../../../../store/store'
 
 type CommandPayload = {
-  card: CardInterface
+  card: Card
 
 }
 
