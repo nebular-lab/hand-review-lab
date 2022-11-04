@@ -13,7 +13,7 @@ https://user-images.githubusercontent.com/78769350/191333974-4d7803d1-8cc0-468c-
 ## 目的
 - きれいなUIでハンドレビューを整理したい
 - ハンドレビューを隠さずオープンにして欲しい。
-- 4色のトランプやハンドレンジ表(「GTOwizard」より引用)など、ポーカー特有の機能が付いたエディターが欲しい。
+- 4色のトランプやハンドレンジ表(以下「GTOwizard」より引用)など、ポーカー特有の機能が付いたエディターが欲しい。
 
 <img width="200" alt="image" src="https://user-images.githubusercontent.com/78769350/191332126-cf0a88d1-b8ce-4b21-a005-21d0970fc7a0.png">
 <img width="200" alt="image" src="https://user-images.githubusercontent.com/78769350/191331820-c413c820-8c4e-4e64-81f9-947d06c2af2a.png">
